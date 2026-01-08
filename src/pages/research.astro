@@ -1,0 +1,271 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const publications = await getCollection('publications');
+const sortedPublications = publications.sort((a, b) => b.data.year - a.data.year || b.data.date.getTime() - a.data.date.getTime());
+
+// Group by year
+const publicationsByYear = sortedPublications.reduce((acc, pub) => {
+  const year = pub.data.year;
+  if (!acc[year]) acc[year] = [];
+  acc[year].push(pub);
+  return acc;
+}, {} as Record<number, typeof publications>);
+
+// Get unique themes
+const allThemes = [...new Set(sortedPublications.flatMap(p => p.data.themes))];
+---
+
+<BaseLayout title="Research | Accessible IoT" description="Publications from the JST Presto Grant JPMJPR2132 on accessibility and inclusive IoT design">
+  <div class="container">
+    <h1>Research Publications</h1>
+    <p class="intro">Publications from JST Presto Grant JPMJPR2132 (2021-2025) focused on accessibility assessment tools for the Internet of Things.</p>
+
+    <div class="stats">
+      <div class="stat-item">
+        <span class="stat-number">{publications.length}</span>
+        <span class="stat-label">Publications</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number">{Object.keys(publicationsByYear).length}</span>
+        <span class="stat-label">Years</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number">{allThemes.length}</span>
+        <span class="stat-label">Research Themes</span>
+      </div>
+    </div>
+
+    <section class="themes-section">
+      <h2>Research Themes</h2>
+      <div class="theme-tags">
+        {allThemes.map(theme => (
+          <span class="theme-tag">{theme}</span>
+        ))}
+      </div>
+    </section>
+
+    {Object.entries(publicationsByYear).sort(([a], [b]) => Number(b) - Number(a)).map(([year, pubs]) => (
+      <section class="year-section">
+        <h2 class="year-heading">{year}</h2>
+        <div class="publications-grid">
+          {pubs.map(pub => (
+            <article class="publication-card">
+              <h3 class="pub-title">{pub.data.title}</h3>
+              {pub.data.subtitle && <p class="pub-subtitle">{pub.data.subtitle}</p>}
+
+              <div class="pub-meta">
+                <span class="pub-venue">{pub.data.venue}</span>
+                <span class="pub-type">{pub.data.venueType}</span>
+                {pub.data.featured && <span class="badge-featured">Featured</span>}
+              </div>
+
+              <p class="pub-authors">{pub.data.authors.join(', ')}</p>
+
+              {pub.data.keyContribution && (
+                <p class="pub-contribution"><strong>Key Contribution:</strong> {pub.data.keyContribution}</p>
+              )}
+
+              <div class="pub-themes">
+                {pub.data.themes.map(theme => (
+                  <span class="theme-pill">{theme}</span>
+                ))}
+              </div>
+
+              <div class="pub-links">
+                {pub.data.pdfUrl && (
+                  <a href={pub.data.pdfUrl} class="link-button" target="_blank" rel="noopener noreferrer">
+                    PDF
+                  </a>
+                )}
+                {pub.data.doi && (
+                  <a href={`https://doi.org/${pub.data.doi}`} class="link-button" target="_blank" rel="noopener noreferrer">
+                    DOI
+                  </a>
+                )}
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+    ))}
+  </div>
+</BaseLayout>
+
+<style>
+  .intro {
+    font-size: 1.125rem;
+    color: var(--color-muted);
+    margin-bottom: calc(var(--spacing-unit) * 6);
+  }
+
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: calc(var(--spacing-unit) * 3);
+    margin-bottom: calc(var(--spacing-unit) * 8);
+  }
+
+  .stat-item {
+    text-align: center;
+    padding: calc(var(--spacing-unit) * 3);
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-selection);
+  }
+
+  .stat-number {
+    display: block;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--color-primary);
+  }
+
+  .stat-label {
+    display: block;
+    font-size: 0.875rem;
+    color: var(--color-muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .themes-section {
+    margin-bottom: calc(var(--spacing-unit) * 8);
+  }
+
+  .theme-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: calc(var(--spacing-unit) * 2);
+  }
+
+  .theme-tag {
+    padding: calc(var(--spacing-unit) * 1) calc(var(--spacing-unit) * 2);
+    background-color: var(--color-selection);
+    color: var(--color-secondary);
+    font-size: 0.875rem;
+    border: 1px solid var(--color-secondary);
+  }
+
+  .year-section {
+    margin-bottom: calc(var(--spacing-unit) * 10);
+  }
+
+  .year-heading {
+    color: var(--color-secondary);
+    margin-bottom: calc(var(--spacing-unit) * 4);
+    padding-bottom: calc(var(--spacing-unit) * 2);
+    border-bottom: 2px solid var(--color-surface);
+  }
+
+  .publications-grid {
+    display: grid;
+    gap: calc(var(--spacing-unit) * 4);
+  }
+
+  .publication-card {
+    padding: calc(var(--spacing-unit) * 4);
+    background-color: var(--color-surface);
+    border-left: 4px solid var(--color-primary);
+    transition: border-color var(--transition-speed);
+  }
+
+  .publication-card:hover {
+    border-left-color: var(--color-secondary);
+  }
+
+  .pub-title {
+    font-size: 1.25rem;
+    color: var(--color-foreground);
+    margin-bottom: calc(var(--spacing-unit) * 1);
+  }
+
+  .pub-title::before,
+  .pub-title::after {
+    content: none;
+  }
+
+  .pub-subtitle {
+    font-size: 1rem;
+    color: var(--color-muted);
+    margin-bottom: calc(var(--spacing-unit) * 2);
+    font-style: italic;
+  }
+
+  .pub-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: calc(var(--spacing-unit) * 2);
+    align-items: center;
+    margin-bottom: calc(var(--spacing-unit) * 2);
+  }
+
+  .pub-venue {
+    color: var(--color-cyan);
+    font-weight: 700;
+  }
+
+  .pub-type {
+    color: var(--color-muted);
+    font-size: 0.875rem;
+    text-transform: uppercase;
+  }
+
+  .badge-featured {
+    padding: 2px calc(var(--spacing-unit) * 1);
+    background-color: var(--color-success);
+    color: var(--color-background);
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+
+  .pub-authors {
+    color: var(--color-muted);
+    font-size: 0.875rem;
+    margin-bottom: calc(var(--spacing-unit) * 2);
+  }
+
+  .pub-contribution {
+    color: var(--color-foreground);
+    font-size: 0.9375rem;
+    margin-bottom: calc(var(--spacing-unit) * 2);
+    line-height: 1.6;
+  }
+
+  .pub-themes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-unit);
+    margin-bottom: calc(var(--spacing-unit) * 3);
+  }
+
+  .theme-pill {
+    padding: 4px calc(var(--spacing-unit) * 1.5);
+    background-color: var(--color-background);
+    color: var(--color-secondary);
+    font-size: 0.75rem;
+    border: 1px solid var(--color-selection);
+  }
+
+  .pub-links {
+    display: flex;
+    gap: calc(var(--spacing-unit) * 2);
+  }
+
+  .link-button {
+    padding: calc(var(--spacing-unit) * 1) calc(var(--spacing-unit) * 3);
+    background-color: var(--color-background);
+    color: var(--color-primary);
+    border: 1px solid var(--color-primary);
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.875rem;
+    transition: background-color var(--transition-speed), color var(--transition-speed);
+  }
+
+  .link-button:hover {
+    background-color: var(--color-primary);
+    color: var(--color-background);
+  }
+</style>

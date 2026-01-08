@@ -1,0 +1,103 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const publications = await getCollection('publications');
+const sortedPubs = publications.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+
+// Create news items from publications
+const newsItems = sortedPubs.map(pub => ({
+  date: pub.data.date,
+  title: `Paper Published: ${pub.data.title}`,
+  venue: pub.data.venue,
+  category: 'publication' as const,
+  excerpt: pub.data.keyContribution || pub.data.abstract?.substring(0, 200) || '',
+  featured: pub.data.featured
+}));
+---
+
+<BaseLayout title="News | Accessible IoT">
+  <div class="container">
+    <h1>News & Updates</h1>
+    <p class="intro">Latest news and milestones from the Accessible IoT project</p>
+
+    <div class="news-grid">
+      {newsItems.map(item => (
+        <article class="news-card" class:list={{ featured: item.featured }}>
+          <div class="news-date">{item.date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</div>
+          {item.featured && <span class="badge-featured">Featured</span>}
+          <h3 class="news-title">{item.title}</h3>
+          <p class="news-venue">{item.venue}</p>
+          <p class="news-excerpt">{item.excerpt}</p>
+        </article>
+      ))}
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .intro {
+    font-size: 1.125rem;
+    color: var(--color-muted);
+    margin-bottom: calc(var(--spacing-unit) * 6);
+  }
+
+  .news-grid {
+    display: grid;
+    gap: calc(var(--spacing-unit) * 4);
+  }
+
+  .news-card {
+    padding: calc(var(--spacing-unit) * 4);
+    background-color: var(--color-surface);
+    border-left: 4px solid var(--color-muted);
+    transition: border-color var(--transition-speed);
+  }
+
+  .news-card.featured {
+    border-left-color: var(--color-success);
+  }
+
+  .news-card:hover {
+    border-left-color: var(--color-primary);
+  }
+
+  .news-date {
+    color: var(--color-muted);
+    font-size: 0.875rem;
+    margin-bottom: calc(var(--spacing-unit) * 1);
+  }
+
+  .badge-featured {
+    display: inline-block;
+    padding: 2px calc(var(--spacing-unit) * 1);
+    background-color: var(--color-success);
+    color: var(--color-background);
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: calc(var(--spacing-unit) * 2);
+  }
+
+  .news-title {
+    color: var(--color-foreground);
+    font-size: 1.25rem;
+    margin-bottom: calc(var(--spacing-unit) * 1);
+  }
+
+  .news-title::before,
+  .news-title::after {
+    content: none;
+  }
+
+  .news-venue {
+    color: var(--color-cyan);
+    font-weight: 700;
+    margin-bottom: calc(var(--spacing-unit) * 2);
+  }
+
+  .news-excerpt {
+    color: var(--color-muted);
+    line-height: 1.6;
+  }
+</style>

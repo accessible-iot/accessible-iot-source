@@ -1,0 +1,163 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = 'Towards Accessibility Assessment Tools for the Internet of Things' } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- Favicons -->
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@400;700&display=swap" rel="stylesheet" />
+
+    <title>{title}</title>
+  </head>
+  <body>
+    <div class="site-wrapper">
+      <aside class="sidebar">
+        <div class="sidebar-header">
+          <a href="/" class="site-title">Accessible IoT</a>
+        </div>
+        <nav class="sidebar-nav">
+          <ul>
+            <li><a href="/" aria-current={Astro.url.pathname === '/' ? 'page' : undefined}>Home</a></li>
+            <li><a href="/research" aria-current={Astro.url.pathname === '/research' ? 'page' : undefined}>Research</a></li>
+            <li><a href="/timeline" aria-current={Astro.url.pathname === '/timeline' ? 'page' : undefined}>Timeline</a></li>
+            <li><a href="/news" aria-current={Astro.url.pathname === '/news' ? 'page' : undefined}>News</a></li>
+            <li><a href="/background" aria-current={Astro.url.pathname === '/background' ? 'page' : undefined}>Background</a></li>
+            <li><a href="/team" aria-current={Astro.url.pathname === '/team' ? 'page' : undefined}>Team</a></li>
+          </ul>
+        </nav>
+      </aside>
+
+      <main class="main-content">
+        <slot />
+      </main>
+    </div>
+  </body>
+</html>
+
+<style>
+  .site-wrapper {
+    display: flex;
+    min-height: 100vh;
+  }
+
+  .sidebar {
+    width: var(--sidebar-width);
+    background-color: var(--color-background);
+    border-right: 1px solid var(--color-surface);
+    position: fixed;
+    height: 100vh;
+    left: 0;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+  }
+
+  .sidebar-header {
+    height: var(--header-height);
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 0 calc(var(--spacing-unit) * 4);
+    border-bottom: 1px solid var(--color-surface);
+  }
+
+  .site-title {
+    font-weight: 700;
+    font-size: 1.25rem;
+    color: var(--color-primary);
+  }
+
+  .site-title:hover {
+    color: var(--color-secondary);
+  }
+
+  .sidebar-nav {
+    padding: calc(var(--spacing-unit) * 2) calc(var(--spacing-unit) * 4);
+  }
+
+  .sidebar-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .sidebar-nav li {
+    margin-top: var(--spacing-unit);
+  }
+
+  .sidebar-nav a {
+    display: inline-block;
+    color: var(--color-muted);
+    font-weight: 400;
+    transition: var(--transition-speed) linear color;
+  }
+
+  .sidebar-nav a::before {
+    content: '- ';
+    padding-right: var(--spacing-unit);
+  }
+
+  .sidebar-nav a:hover,
+  .sidebar-nav a:focus {
+    color: var(--color-foreground);
+  }
+
+  .sidebar-nav a[aria-current="page"] {
+    color: var(--color-foreground);
+    pointer-events: none;
+  }
+
+  .main-content {
+    margin-left: var(--sidebar-width);
+    flex: 1;
+    padding: calc(var(--spacing-unit) * 8) calc(var(--spacing-unit) * 4);
+  }
+
+  @media (max-width: 1024px) {
+    .site-wrapper {
+      flex-direction: column;
+    }
+
+    .sidebar {
+      position: static;
+      width: 100%;
+      height: auto;
+      border-right: none;
+      border-bottom: 1px solid var(--color-surface);
+    }
+
+    .sidebar-header {
+      justify-content: flex-start;
+    }
+
+    .main-content {
+      margin-left: 0;
+      padding: calc(var(--spacing-unit) * 4) calc(var(--spacing-unit) * 2);
+    }
+  }
+</style>

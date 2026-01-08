@@ -1,0 +1,163 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Team | Accessible IoT">
+  <div class="container">
+    <h1>Team</h1>
+
+    <section class="pi-section">
+      <h2>Principal Investigator</h2>
+      <div class="person-card">
+        <h3>Prof. Kai Kunze</h3>
+        <p class="affiliation">Graduate School of Media Design, Keio University</p>
+        <p class="bio">Kai Kunze is a professor at Keio Media Design, specializing in wearable computing, eyewear computing, and accessibility. His research focuses on quantifying cognitive states to augment the mind using wearable technology.</p>
+
+        <div class="contact-info">
+          <h4>Contact</h4>
+          <p><strong>Email:</strong> <a href="mailto:kai@kmd.keio.ac.jp">kai (at) kmd.keio.ac.jp</a></p>
+          <p><strong>Homepage:</strong> <a href="https://kaikunze.de" target="_blank" rel="noopener noreferrer">https://kaikunze.de</a></p>
+          <p><strong>Google Scholar:</strong> <a href="https://scholar.google.com/citations?user=aBBK-psAAAAJ" target="_blank" rel="noopener noreferrer">Profile</a></p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Key Collaborators</h2>
+      <p>This research has benefited from collaboration with many talented researchers and institutions:</p>
+
+      <div class="collaborators-grid">
+        <div class="collaborator-card">
+          <h4>Dr. Giulia Barbareschi</h4>
+          <p>Multiple publications on inclusive design, accessibility, and assistive robotics</p>
+        </div>
+
+        <div class="collaborator-card">
+          <h4>Dr. Kouta Minamizawa</h4>
+          <p>Embodied Media, Keio University - Robotics and haptics research</p>
+        </div>
+
+        <div class="collaborator-card">
+          <h4>Prof. Michael Beigl</h4>
+          <p>Karlsruhe Institute of Technology - Ubiquitous computing and wearable systems</p>
+        </div>
+
+        <div class="collaborator-card">
+          <h4>Dr. Yun Suen Pai</h4>
+          <p>Extended reality and educational technology</p>
+        </div>
+
+        <div class="collaborator-card">
+          <h4>Christopher Changmok Kim</h4>
+          <p>Eye-tracking and cognitive well-being research</p>
+        </div>
+
+        <div class="collaborator-card">
+          <h4>Dr. Tobias Röddiger</h4>
+          <p>Gaze interaction and wearable sensing</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Affiliated Institutions</h2>
+      <ul class="institutions-list">
+        <li>Keio University Graduate School of Media Design, Japan</li>
+        <li>Karlsruhe Institute of Technology (KIT), Germany</li>
+        <li>Goldsmiths, University of London, UK</li>
+        <li>University of Passau, Germany</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Funding</h2>
+      <p><strong>JST Presto Program</strong></p>
+      <p>Grant Number: JPMJPR2132</p>
+      <p>Period: 2021-2025</p>
+      <p>This research is funded by the Japan Science and Technology Agency (JST) PRESTO program, which supports individual researchers conducting innovative and exploratory research.</p>
+    </section>
+  </div>
+</BaseLayout>
+
+<style>
+  .pi-section {
+    margin-bottom: calc(var(--spacing-unit) * 10);
+  }
+
+  .person-card {
+    background-color: var(--color-surface);
+    padding: calc(var(--spacing-unit) * 4);
+    border-left: 4px solid var(--color-primary);
+  }
+
+  .person-card h3 {
+    color: var(--color-primary);
+    margin-bottom: calc(var(--spacing-unit) * 1);
+  }
+
+  .person-card h3::before,
+  .person-card h3::after {
+    content: none;
+  }
+
+  .affiliation {
+    color: var(--color-secondary);
+    font-weight: 700;
+    margin-bottom: calc(var(--spacing-unit) * 2);
+  }
+
+  .bio {
+    line-height: 1.8;
+    margin-bottom: calc(var(--spacing-unit) * 3);
+  }
+
+  .contact-info {
+    border-top: 1px solid var(--color-selection);
+    padding-top: calc(var(--spacing-unit) * 2);
+  }
+
+  .contact-info h4 {
+    color: var(--color-secondary);
+    margin-bottom: calc(var(--spacing-unit) * 2);
+  }
+
+  .contact-info p {
+    margin-bottom: calc(var(--spacing-unit) * 1);
+  }
+
+  .collaborators-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: calc(var(--spacing-unit) * 3);
+    margin-top: calc(var(--spacing-unit) * 3);
+  }
+
+  .collaborator-card {
+    padding: calc(var(--spacing-unit) * 3);
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-selection);
+  }
+
+  .collaborator-card h4 {
+    color: var(--color-foreground);
+    margin-bottom: calc(var(--spacing-unit) * 1);
+  }
+
+  .collaborator-card p {
+    color: var(--color-muted);
+    font-size: 0.875rem;
+    line-height: 1.6;
+  }
+
+  .institutions-list {
+    line-height: 2.5;
+  }
+
+  .institutions-list li {
+    color: var(--color-foreground);
+  }
+
+  section {
+    margin-bottom: calc(var(--spacing-unit) * 8);
+  }
+</style>

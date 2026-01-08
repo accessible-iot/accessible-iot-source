@@ -1,0 +1,162 @@
+/* Design Tokens - Dracula Theme */
+:root {
+  /* Dracula Colors */
+  --color-background: #282a36;
+  --color-foreground: #f8f8f2;
+  --color-selection: #44475a;
+  --color-comment: #6272a4;
+  --color-red: #ff5555;
+  --color-orange: #ffb86c;
+  --color-yellow: #f1fa8c;
+  --color-green: #50fa7b;
+  --color-purple: #bd93f9;
+  --color-cyan: #8be9fd;
+  --color-pink: #ff79c6;
+
+  /* Semantic Tokens */
+  --color-primary: var(--color-pink);
+  --color-secondary: var(--color-cyan);
+  --color-success: var(--color-green);
+  --color-error: var(--color-red);
+  --color-muted: var(--color-comment);
+  --color-surface: #323442;
+
+  /* Typography */
+  --font-mono: 'Inconsolata', 'Courier New', monospace;
+  --font-size-base: 16px;
+  --line-height-base: 1.75;
+
+  /* Spacing */
+  --sidebar-width: 280px;
+  --header-height: 48px;
+  --spacing-unit: 8px;
+
+  /* Transitions */
+  --transition-speed: 0.2s;
+}
+
+/* Reset and Base Styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-family: var(--font-mono);
+  font-weight: 400;
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-base);
+  color: var(--color-foreground);
+  background-color: var(--color-background);
+}
+
+body {
+  margin: 0;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  line-height: 1.125;
+  margin-top: 0;
+  margin-bottom: calc(var(--spacing-unit) * 2);
+}
+
+h1 { font-size: 2.5rem; color: var(--color-primary); }
+h2 { font-size: 2rem; color: var(--color-primary); }
+h3 { font-size: 1.5rem; color: var(--color-secondary); }
+h4 { font-size: 1.25rem; }
+h5 { font-size: 1.125rem; }
+h6 { font-size: 1rem; }
+
+/* Terminal-style heading decorations */
+h2::before {
+  content: '→ ';
+  color: var(--color-success);
+  margin-right: var(--spacing-unit);
+}
+
+h2::after {
+  content: '()';
+  color: var(--color-secondary);
+  margin-left: 4px;
+}
+
+p {
+  margin-top: 0;
+  margin-bottom: calc(var(--spacing-unit) * 2);
+}
+
+/* Links */
+a {
+  color: var(--color-muted);
+  text-decoration: none;
+  transition: var(--transition-speed) linear color, var(--transition-speed) linear box-shadow;
+}
+
+a:hover {
+  color: var(--color-primary);
+}
+
+a:focus {
+  outline: none;
+  box-shadow: 0 2px 0 0 var(--color-primary);
+}
+
+/* Code */
+code {
+  font-family: var(--font-mono);
+  color: var(--color-secondary);
+  background-color: var(--color-surface);
+  font-size: 13px;
+  padding: 4px;
+  border-radius: 4px;
+}
+
+pre {
+  background-color: #011627;
+  border-radius: 0;
+  overflow: auto;
+  font-size: 13px;
+  padding: calc(var(--spacing-unit) * 2);
+  margin-top: calc(var(--spacing-unit) * 6);
+  margin-bottom: calc(var(--spacing-unit) * 6);
+}
+
+pre code {
+  background-color: transparent;
+  padding: 0;
+}
+
+/* Lists */
+ul, ol {
+  margin-bottom: calc(var(--spacing-unit) * 2);
+  padding-left: calc(var(--spacing-unit) * 4);
+}
+
+/* Utility Classes */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-left: calc(var(--spacing-unit) * 2);
+  padding-right: calc(var(--spacing-unit) * 2);
+}
+
+.terminal-prompt::before {
+  content: '$ ';
+  color: var(--color-success);
+}
+
+/* Selection */
+::selection {
+  background-color: var(--color-selection);
+  color: var(--color-foreground);
+}
+
+/* Focus styles for accessibility */
+:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}

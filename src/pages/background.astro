@@ -1,0 +1,75 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Background | Accessible IoT">
+  <div class="container">
+    <h1>Background</h1>
+    <p class="subtitle">Towards an Inclusive Internet of Things</p>
+
+    <section>
+      <h2>Project Overview</h2>
+      <p>This project is funded by JST Presto Grant JPMJPR2132 (2021-2025) and focuses on developing accessibility assessment tools for the Internet of Things.</p>
+      <p>Our goal is to create Open Accessibility Assessment Toolkits for Inclusive IoT Design that provide a foundation for evaluating diverse IoT services in terms of user-perceived accessibility using on-body sensing.</p>
+    </section>
+
+    <section>
+      <h2>Why Toolkits?</h2>
+      <p>Currently, accessibility in IoT is left to the developers and engineers of individual IoT services and systems. Accessibility is, if at all, designed on the application level, relying on the skill and expertise of individual developers.</p>
+      <p>There is no architecture or framework support for Inclusive IoT Design (e.g., guidance for vision, sound, motion, or haptic designs). There are efforts for data interoperability between devices, yet sensing (activity recognition) and accessibility assessment in terms of interacting with the IoT are not covered by them.</p>
+    </section>
+
+    <section>
+      <h2>Motivation</h2>
+      <p>Inclusive Design and Accessibility are two core concepts emphasized in nearly all 17 of the UN's Sustainable Development Goals. IoT's universal impact has a unique potential to serve as an enabling technology for several of the SDGs such as SDG 3, 9, and 11.</p>
+      <p>For IoT to fulfill its potential in advancing social good, accessibility for differently abled users is essential. People who do not fit the idea of an "average user" (e.g., having some disabilities or being neurodiverse) can benefit immensely from the Internet of Things.</p>
+      <p>For example, mainstream home automation products and services could improve the quality and reduce the cost of custom-made solutions for ambient assisted living. However, not considering accessibility in IoT design can further exclude people with different abilities.</p>
+    </section>
+
+    <section>
+      <h2>Research Approach</h2>
+      <p>Our research takes a multi-faceted approach:</p>
+      <ul>
+        <li><strong>On-body Sensing:</strong> Using wearable sensors to understand user interactions with IoT devices</li>
+        <li><strong>Accessibility Assessment:</strong> Developing tools to evaluate IoT services for diverse user needs</li>
+        <li><strong>Inclusive Design:</strong> Creating frameworks that support designing for all users from the start</li>
+        <li><strong>Open Toolkits:</strong> Making our tools and methods openly available to researchers and practitioners</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Impact</h2>
+      <p>Through our work, we aim to:</p>
+      <ul>
+        <li>Provide practical tools for assessing IoT accessibility</li>
+        <li>Raise awareness about accessibility in IoT design</li>
+        <li>Enable more inclusive IoT services and systems</li>
+        <li>Empower people with disabilities through better IoT technology</li>
+      </ul>
+    </section>
+  </div>
+</BaseLayout>
+
+<style>
+  .subtitle {
+    font-size: 1.5rem;
+    color: var(--color-secondary);
+    margin-bottom: calc(var(--spacing-unit) * 6);
+  }
+
+  section {
+    margin-bottom: calc(var(--spacing-unit) * 8);
+  }
+
+  ul {
+    line-height: 2;
+  }
+
+  li {
+    margin-bottom: calc(var(--spacing-unit) * 1);
+  }
+
+  strong {
+    color: var(--color-primary);
+  }
+</style>
