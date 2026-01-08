@@ -1,0 +1,23 @@
+{{ define "main" }}
+<div class="container">
+  <h1>News & Updates</h1>
+  <p class="intro">Latest news and milestones from the Accessible IoT project</p>
+
+  {{ $publications := where .Site.RegularPages "Section" "publications" }}
+  {{ $sortedPubs := sort $publications ".Params.date" "desc" }}
+
+  <div class="news-grid">
+    {{ range $sortedPubs }}
+    <article class="card{{ if .Params.featured }} featured{{ end }}">
+      <div class="publication-meta">{{ .Date.Format "January 2, 2006" }}</div>
+      {{ if .Params.featured }}
+      <span class="badge">Featured</span>
+      {{ end }}
+      <h3>Paper Published: {{ .Params.title }}</h3>
+      <p class="publication-venue">{{ .Params.venue }}</p>
+      <p>{{ if .Params.keyContribution }}{{ .Params.keyContribution }}{{ else }}{{ .Summary }}{{ end }}</p>
+    </article>
+    {{ end }}
+  </div>
+</div>
+{{ end }}

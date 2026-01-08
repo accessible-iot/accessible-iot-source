@@ -1,0 +1,16 @@
+<header class="mobile-header">
+  <a href="/" class="mobile-title">Accessible IoT</a>
+
+  <nav class="mobile-nav">
+    <ul>
+      {{ $currentPage := . }}
+      {{ range .Site.Menus.main }}
+        <li>
+          <a href="{{ .URL }}" {{ if or (eq $currentPage.RelPermalink .URL) (and (eq .URL "/") $currentPage.IsHome) }}class="active"{{ end }}>
+            {{ .Name }}
+          </a>
+        </li>
+      {{ end }}
+    </ul>
+  </nav>
+</header>

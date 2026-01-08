@@ -1,0 +1,56 @@
+baseURL = 'https://accessible-iot.org/'
+languageCode = 'en-us'
+title = 'Accessible IoT'
+
+[params]
+  description = "Towards Accessibility Assessment Tools for the Internet of Things"
+  grant = "JST Presto JPMJPR2132"
+  grantPeriod = "2021-2025"
+  author = "Kai Kunze"
+  email = "kai@kmd.keio.ac.jp"
+  homepage = "https://kaikunze.de"
+  institution = "Graduate School of Media Design, Keio University"
+
+[taxonomies]
+  theme = "themes"
+  venue = "venues"
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+
+[outputs]
+  home = ["HTML"]
+  section = ["HTML"]
+
+# Menu configuration
+[[menu.main]]
+  name = "Home"
+  url = "/"
+  weight = 1
+
+[[menu.main]]
+  name = "Research"
+  url = "/research/"
+  weight = 2
+
+[[menu.main]]
+  name = "Timeline"
+  url = "/timeline/"
+  weight = 3
+
+[[menu.main]]
+  name = "News"
+  url = "/news/"
+  weight = 4
+
+[[menu.main]]
+  name = "Background"
+  url = "/background/"
+  weight = 5
+
+[[menu.main]]
+  name = "Team"
+  url = "/team/"
+  weight = 6

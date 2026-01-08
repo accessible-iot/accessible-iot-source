@@ -1,0 +1,31 @@
+{{ define "main" }}
+<div class="container">
+  <h1>Team</h1>
+  <p class="intro">The Accessible IoT project team</p>
+
+  <section>
+    <h2>Principal Investigator</h2>
+    <div class="card">
+      <h3>Prof. Kai Kunze</h3>
+      <p><strong>Position:</strong> Associate Professor</p>
+      <p><strong>Institution:</strong> {{ .Site.Params.institution }}</p>
+      <p><strong>Email:</strong> <a href="mailto:{{ .Site.Params.email }}">{{ .Site.Params.email }}</a></p>
+      <p><strong>Homepage:</strong> <a href="{{ .Site.Params.homepage }}" target="_blank">{{ .Site.Params.homepage }}</a></p>
+      <p><strong>Google Scholar:</strong> <a href="https://scholar.google.com/citations?user=VU0XINMAAAAJ" target="_blank">Profile</a></p>
+
+      <p style="margin-top: calc(var(--spacing-unit) * 3);">
+        Kai Kunze is an Associate Professor at Keio University's Graduate School of Media Design. His research focuses on wearable computing, ubiquitous computing, and human-computer interaction, with a particular emphasis on accessibility and inclusive design for the Internet of Things.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Funding</h2>
+    <div class="card">
+      <p><strong>Grant:</strong> JST Presto {{ .Site.Params.grant }}</p>
+      <p><strong>Period:</strong> {{ .Site.Params.grantPeriod }}</p>
+      <p><strong>Focus:</strong> Accessibility Assessment Toolkits for Inclusive IoT Design</p>
+    </div>
+  </section>
+</div>
+{{ end }}

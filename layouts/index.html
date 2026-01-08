@@ -1,0 +1,59 @@
+{{ define "main" }}
+<div class="container">
+  <h1>Accessible IoT</h1>
+
+  <div class="badge">
+    Towards Accessibility Assessment Toolkits for the Internet of Things
+  </div>
+
+  <section>
+    <h2>About</h2>
+    <p>This page is an effort to provide accessibility assessment tools to the Internet of Things.</p>
+    <p>Our first effort is to work on an accessibility assessment Toolkits for Inclusive IoT Design using Onbody Sensing.</p>
+    <p>We propose to build Open Accessibility Assessment Toolkits for Inclusive IoT Design that will provide a foundation for evaluating diverse IoT services in terms of user-perceived accessibility first using on-body sensing. We provide the first steps to an Inclusive IoT architecture enabling an in-situ, dynamic system reconfiguration based on the user's implicit feedback.</p>
+  </section>
+
+  <section>
+    <h2>JST Presto Grant</h2>
+    <p><strong>Grant Number:</strong> {{ .Site.Params.grant }}</p>
+    <p><strong>Period:</strong> {{ .Site.Params.grantPeriod }}</p>
+    <p><strong>Principal Investigator:</strong> {{ .Site.Params.author }}</p>
+    <p>This website showcases the research outputs and achievements from our JST Presto grant focusing on accessibility assessment tools for the Internet of Things.</p>
+  </section>
+
+  <section>
+    <h2>Quick Stats</h2>
+    {{ $publications := where .Site.RegularPages "Section" "publications" }}
+    {{ $pubsByYear := $publications.GroupByParam "year" }}
+
+    {{ $themes := slice }}
+    {{ range $publications }}
+      {{ range .Params.themes }}
+        {{ if not (in $themes .) }}
+          {{ $themes = $themes | append . }}
+        {{ end }}
+      {{ end }}
+    {{ end }}
+
+    <ul>
+      <li>{{ len $publications }}+ Publications (2021-2025)</li>
+      <li>{{ len $themes }} Research Themes</li>
+      <li>Top-tier venues: CHI, UbiComp, UIST, ETRA</li>
+      <li>Focus: Accessibility, Inclusive Design, IoT</li>
+    </ul>
+  </section>
+
+  <div class="two-col">
+    <section>
+      <h2>Contact</h2>
+      <p><strong>Email:</strong> <a href="mailto:{{ .Site.Params.email }}">{{ .Site.Params.email }}</a></p>
+      <p><strong>Homepage:</strong> <a href="{{ .Site.Params.homepage }}" target="_blank">{{ .Site.Params.homepage }}</a></p>
+    </section>
+
+    <section>
+      <h2>Institution</h2>
+      <p>{{ .Site.Params.institution }}</p>
+    </section>
+  </div>
+</div>
+{{ end }}

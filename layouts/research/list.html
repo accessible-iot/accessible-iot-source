@@ -1,0 +1,86 @@
+{{ define "main" }}
+<div class="container">
+  <h1>Research</h1>
+  <p class="intro">Publications from the Accessible IoT project (2021-2025) under JST Presto Grant JPMJPR2132</p>
+
+  {{ $publications := where .Site.RegularPages "Section" "publications" }}
+  {{ $sortedPubs := sort $publications ".Params.date" "desc" }}
+  {{ $pubsByYear := $sortedPubs.GroupByParam "year" }}
+
+  <!-- Stats -->
+  <div class="stats-grid">
+    {{ $themes := slice }}
+    {{ range $publications }}
+      {{ range .Params.themes }}
+        {{ if not (in $themes .) }}
+          {{ $themes = $themes | append . }}
+        {{ end }}
+      {{ end }}
+    {{ end }}
+
+    <div class="stat-card">
+      <div class="stat-value">{{ len $publications }}</div>
+      <div class="stat-label">Publications</div>
+    </div>
+
+    <div class="stat-card">
+      <div class="stat-value">{{ len $pubsByYear }}</div>
+      <div class="stat-label">Years</div>
+    </div>
+
+    <div class="stat-card">
+      <div class="stat-value">{{ len $themes }}</div>
+      <div class="stat-label">Research Themes</div>
+    </div>
+  </div>
+
+  <!-- Publications grouped by year -->
+  {{ range $pubsByYear }}
+  <section>
+    <h2>{{ .Key }}</h2>
+
+    {{ range sort .Pages ".Params.date" "desc" }}
+    <article class="publication-card{{ if .Params.featured }} featured{{ end }}">
+      <h3>{{ .Params.title }}</h3>
+      {{ if .Params.subtitle }}
+      <p class="publication-subtitle">{{ .Params.subtitle }}</p>
+      {{ end }}
+
+      <p class="publication-venue">{{ .Params.venue }}</p>
+
+      <p class="publication-authors">
+        {{ delimit .Params.authors ", " }}
+      </p>
+
+      {{ if .Params.keyContribution }}
+      <p><strong>Key Contribution:</strong> {{ .Params.keyContribution }}</p>
+      {{ end }}
+
+      {{ if .Content }}
+      <div class="publication-excerpt">
+        {{ .Content }}
+      </div>
+      {{ end }}
+
+      {{ if .Params.themes }}
+      <div class="theme-badges">
+        {{ range .Params.themes }}
+        <span class="theme-badge">{{ . }}</span>
+        {{ end }}
+      </div>
+      {{ end }}
+
+      <div class="publication-links">
+        {{ if .Params.pdfUrl }}
+        <a href="{{ .Params.pdfUrl }}" target="_blank">PDF</a>
+        {{ end }}
+        {{ if .Params.doi }}
+        <a href="https://doi.org/{{ .Params.doi }}" target="_blank">DOI</a>
+        {{ end }}
+      </div>
+    </article>
+    {{ end }}
+  </section>
+  {{ end }}
+</div>
+{{ end }}

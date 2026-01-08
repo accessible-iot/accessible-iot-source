@@ -1,0 +1,18 @@
+<aside class="sidebar">
+  <div class="sidebar-header">
+    <a href="/" class="site-title">Accessible IoT</a>
+  </div>
+
+  <nav class="sidebar-nav">
+    <ul>
+      {{ $currentPage := . }}
+      {{ range .Site.Menus.main }}
+        <li>
+          <a href="{{ .URL }}" {{ if or (eq $currentPage.RelPermalink .URL) (and (eq .URL "/") $currentPage.IsHome) }}class="active"{{ end }}>
+            {{ .Name }}
+          </a>
+        </li>
+      {{ end }}
+    </ul>
+  </nav>
+</aside>

@@ -1,0 +1,75 @@
+{{ define "main" }}
+<div class="container">
+  <h1>Research Timeline</h1>
+  <p class="intro">Evolution of our research from 2021-2025 under JST Presto Grant JPMJPR2132</p>
+
+  {{ $publications := where .Site.RegularPages "Section" "publications" }}
+  {{ $sortedPubs := sort $publications ".Params.date" "asc" }}
+  {{ $pubsByYear := $sortedPubs.GroupByParam "year" }}
+
+  <div class="timeline">
+    {{ range $pubsByYear }}
+    <div class="timeline-year">
+      <div class="year-marker">
+        <span class="year-label">{{ .Key }}</span>
+        <span class="year-count">{{ len .Pages }} publication{{ if ne (len .Pages) 1 }}s{{ end }}</span>
+      </div>
+
+      <div class="year-content">
+        {{ range sort .Pages ".Params.date" "asc" }}
+        <div class="timeline-event">
+          <div class="event-date">{{ .Date.Format "Jan 2" }}</div>
+          <div class="event-content">
+            <h3 class="event-title">{{ .Params.title }}</h3>
+            <p class="event-venue">{{ .Params.venue }}</p>
+            {{ if .Params.themes }}
+            <div class="theme-badges">
+              {{ range .Params.themes }}
+              <span class="theme-badge">{{ . }}</span>
+              {{ end }}
+            </div>
+            {{ end }}
+          </div>
+        </div>
+        {{ end }}
+      </div>
+    </div>
+    {{ end }}
+  </div>
+
+  <section class="milestones">
+    <h2>Key Milestones</h2>
+    <div class="milestone-grid">
+      <div class="milestone-card">
+        <div class="milestone-year">2021</div>
+        <div class="milestone-title">Grant Start</div>
+        <p>JST Presto Grant JPMJPR2132 begins, focusing on accessibility assessment tools for IoT</p>
+      </div>
+
+      <div class="milestone-card">
+        <div class="milestone-year">2022</div>
+        <div class="milestone-title">First Major Publication</div>
+        <p>UIST 2022: Smart glasses-based visual impairment simulation</p>
+      </div>
+
+      <div class="milestone-card">
+        <div class="milestone-year">2023</div>
+        <div class="milestone-title">Research Expansion</div>
+        <p>CHI 2023: Robotic avatars for disabled workers - demonstrating real-world impact</p>
+      </div>
+
+      <div class="milestone-card">
+        <div class="milestone-year">2024</div>
+        <div class="milestone-title">Peak Productivity</div>
+        <p>Multiple publications at CHI, UbiComp, and ETRA</p>
+      </div>
+
+      <div class="milestone-card">
+        <div class="milestone-year">2025</div>
+        <div class="milestone-title">Project Culmination</div>
+        <p>9 publications showcasing diverse accessibility and inclusive design research</p>
+      </div>
+    </div>
+  </section>
+</div>
+{{ end }}
