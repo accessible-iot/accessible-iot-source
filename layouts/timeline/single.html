@@ -3,20 +3,30 @@
   <h1>Research Timeline</h1>
   <p class="intro">Evolution of our research from 2021-2025 under JST Presto Grant JPMJPR2132</p>
 
-  {{ $publications := where .Site.RegularPages "Section" "publications" }}
-  {{ $sortedPubs := sort $publications ".Params.date" "asc" }}
-  {{ $pubsByYear := $sortedPubs.GroupByParam "year" }}
+  {{ $publications := where .Site.Pages "Section" "publications" }}
+  {{ $publications = where $publications "Kind" "page" }}
+  {{ $sortedPubs := sort $publications "Date" "asc" }}
+
+  {{ $years := slice }}
+  {{ range $publications }}
+    {{ $year := .Params.year }}
+    {{ if not (in $years $year) }}
+      {{ $years = $years | append $year }}
+    {{ end }}
+  {{ end }}
 
   <div class="timeline">
-    {{ range $pubsByYear }}
+    {{ range $years }}
+    {{ $year := . }}
+    {{ $yearPubs := where $sortedPubs "Params.year" $year }}
     <div class="timeline-year">
       <div class="year-marker">
-        <span class="year-label">{{ .Key }}</span>
-        <span class="year-count">{{ len .Pages }} publication{{ if ne (len .Pages) 1 }}s{{ end }}</span>
+        <span class="year-label">{{ $year }}</span>
+        <span class="year-count">{{ len $yearPubs }} publication{{ if ne (len $yearPubs) 1 }}s{{ end }}</span>
       </div>
 
       <div class="year-content">
-        {{ range sort .Pages ".Params.date" "asc" }}
+        {{ range $yearPubs }}
         <div class="timeline-event">
           <div class="event-date">{{ .Date.Format "Jan 2" }}</div>
           <div class="event-content">

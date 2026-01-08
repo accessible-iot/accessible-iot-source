@@ -23,7 +23,8 @@
 
   <section>
     <h2>Quick Stats</h2>
-    {{ $publications := where .Site.RegularPages "Section" "publications" }}
+    {{ $publications := where .Site.Pages "Section" "publications" }}
+    {{ $publications = where $publications "Kind" "page" }}
     {{ $pubsByYear := $publications.GroupByParam "year" }}
 
     {{ $themes := slice }}

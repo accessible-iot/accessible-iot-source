@@ -3,8 +3,9 @@
   <h1>News & Updates</h1>
   <p class="intro">Latest news and milestones from the Accessible IoT project</p>
 
-  {{ $publications := where .Site.RegularPages "Section" "publications" }}
-  {{ $sortedPubs := sort $publications ".Params.date" "desc" }}
+  {{ $publications := where .Site.Pages "Section" "publications" }}
+  {{ $publications = where $publications "Kind" "page" }}
+  {{ $sortedPubs := sort $publications "Date" "desc" }}
 
   <div class="news-grid">
     {{ range $sortedPubs }}
