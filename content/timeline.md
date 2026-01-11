@@ -96,7 +96,7 @@ The final year demonstrated the breadth and maturity of our research program thr
 
 We expanded our community-building efforts through the 2nd mobiCHAI workshop and additional events at Augmented Humans and UbiComp. We also organized two Dagstuhl Seminars on Cognitive Augmentation, bringing together international leaders to define future research agendas.
 
-The year's publications reflected increasing sophistication in our sensing methods (multimodal vocal training systems, physiological insights for breath-aware augmentation), expanding application domains (singing training, meditation augmentation, haptic VR navigation), and continued platform development (soft floating robotic avatars, biosensing workshops). This diversity demonstrated that our two-pronged approach—helping users through sensing and supporting designers through simulation—could generate rich research contributions across multiple dimensions of accessible IoT.
+The year's publications reflected increasing sophistication in our sensing methods (multimodal vocal training systems, physiological insights for breath-aware augmentation), expanding application domains (singing training, meditation augmentation, haptic VR navigation), and continued platform development (soft floating robotic avatars, biosensing workshops). This diversity demonstrated that our dual-approach framework—helping users through sensing and supporting designers through simulation—could generate rich research contributions across multiple dimensions of accessible IoT.
 
 ### Publications (10 papers)
 

@@ -2,7 +2,7 @@
 title: "Research Outcomes"
 ---
 
-This page presents the major prototypes and systems developed through our two-pronged research approach to accessible IoT. Each system addresses specific accessibility challenges through novel technical solutions, community partnerships, or empathy-building tools. Our work demonstrates how physiological sensing, adaptive feedback, and experiential simulation can create more inclusive IoT environments.
+This page presents the major prototypes and systems developed through our dual-approach research framework for accessible IoT. Each system addresses specific accessibility challenges through novel technical solutions, community partnerships, or empathy-building tools. Our work demonstrates how physiological sensing, adaptive feedback, and experiential simulation can create more inclusive IoT environments.
 
 ## Approach 1: Helping Users
 

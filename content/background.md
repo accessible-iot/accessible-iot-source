@@ -32,7 +32,7 @@ Our research addresses these limitations through two interconnected strategies:
 
 This approach transforms accessibility assessment from a static, post-hoc evaluation into an ongoing, adaptive process embedded in the fabric of IoT interactions.
 
-## Research Approaches: Two-Pronged Framework
+## Research Approaches: Dual-Approach Framework
 
 Our research follows two complementary approaches that together create a comprehensive ecosystem for accessible IoT design:
 
