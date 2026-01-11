@@ -24,13 +24,27 @@ Traditional accessibility evaluation approaches face three fundamental limitatio
 
 ### Our Approach: Dynamic, In-Situ Assessment
 
-Our research addresses these limitations through two interconnected strategies:
+Our research explores approaches to address these limitations through two interconnected strategies:
 
 1. **Real-time Physiological Sensing**: We use wearable sensors and smart eyewear to capture objective indicators of user experience—including physiological signals (heart rate, electrodermal activity, eye movements, muscle activity), cognitive and emotional states, and environmental context—as users interact with IoT devices in authentic settings.
 
 2. **Adaptive System Reconfiguration**: The assessment toolkit enables IoT systems to dynamically adjust their interfaces, modalities, and behaviors based on implicit feedback from physiological sensing, creating truly responsive environments tailored to individual users' accessibility needs.
 
 This approach transforms accessibility assessment from a static, post-hoc evaluation into an ongoing, adaptive process embedded in the fabric of IoT interactions.
+
+These approaches are complementary but represent different stages of validation: physiological sensing methods have been technically validated in specific contexts, while their generalizability to diverse accessibility assessment scenarios remains an active research question.
+
+## Accessibility Framework
+
+This research draws on multiple accessibility models and frameworks:
+
+**Social Model of Disability**: We recognize that accessibility barriers arise from the interaction between individuals and their environments, not solely from individual impairments. Our dual-approach addresses both user-centered sensing (helping individuals navigate barriers) and designer-centered education (removing barriers at the design stage).
+
+**Universal Design Principles**: While our prototypes focus on specific contexts (visual accessibility, stress management), they embody universal design thinking—creating systems that benefit diverse users through flexible, perceptible, and intuitive design.
+
+**Participatory Design**: We emphasize co-design with disabled communities throughout the research process, though the extent of participation varies across projects (acknowledged in individual project descriptions).
+
+**Research Questions vs. Validated Findings**: A foundational question guiding this work is: *Can physiological sensing reliably indicate accessibility barriers in IoT contexts?* While our prototypes demonstrate technical feasibility and suggest potential applications, validating this core premise requires ongoing research with diverse user populations and IoT systems.
 
 ## Research Approaches: Dual-Approach Framework
 
@@ -48,13 +62,17 @@ We explore how physiological sensing can be seamlessly integrated into objects p
 
 In a 21-person real-world study conducted during rainy weather at night, we evaluated two bio-feedback patterns: a mirror effect (directly reflecting physiological state) and an inversion effect (designed to regulate emotions through counter-stimulation). Statistical analysis demonstrated the system's potential for emotion regulation through somaesthetic appreciation—fostering awareness and appreciation of one's own bodily states. The mirror effect produced significantly higher emotional arousal (p=.0022) compared to baseline, while both patterns showed measurably different impacts on physiological indicators such as RMSSD and pNN50. This work established that physiological sensing can be successfully integrated into everyday objects while maintaining data quality comparable to traditional finger-based measurements, opening new possibilities for context-aware accessibility assessment.
 
+**Limitations**: This study demonstrates bio-feedback's potential for emotion regulation but does not directly validate the umbrella as an accessibility assessment tool. The 21-person sample was a convenience sample (demographics not reported), and the study was conducted in specific weather conditions (rainy, nighttime). Whether these findings generalize to other contexts, user populations, or types of accessibility barriers requires further research.
+
 #### Stress Relief Technologies
 
 Building on our sensing capabilities, we developed interventions to help users manage stress and promote well-being through adaptive feedback.
 
 **MindSpace (2025)**: This pneumatically-controlled haptic device simulates gentle, life-like breathing movements that provide deep touch pressure sensations on the user's upper chest area. Designed as a "focusing agent" for short relaxation breaks in work environments, MindSpace aims to enhance mental clarity and reduce stress levels without requiring extended time commitments.
 
-Our initial prototype study with 18 participants employed a within-subjects design comparing performance with and without MindSpace during short break periods. Results provided evidence that MindSpace effectively induces relaxation, increases environmental awareness, and improves work responsiveness following breaks. The findings suggest that regular short breaks augmented with tactile aids like MindSpace may positively impact overall well-being and productivity, offering a practical intervention for stress management in everyday contexts.
+Our initial prototype study with 18 participants employed a within-subjects design comparing performance with and without MindSpace during short break periods. Initial findings suggest MindSpace is associated with increased self-reported relaxation, environmental awareness, and work responsiveness following breaks. The findings suggest that regular short breaks augmented with tactile aids like MindSpace may positively impact overall well-being and productivity, offering a practical intervention for stress management in everyday contexts.
+
+**Limitations**: This preliminary study (n=18) used within-subjects design without apparent blinding or comparison to other relaxation interventions (e.g., simply resting without the device). Participant characteristics were not reported. Further controlled studies are needed to isolate the device's specific contribution to relaxation and assess its effectiveness across diverse user populations and work contexts.
 
 #### Extension to Earable Form Factor
 
@@ -62,7 +80,9 @@ To democratize access to wearable physiological sensing and expand the range of 
 
 **OpenEarable ExG (2024)**: We developed the first open-source hardware platform specifically designed for ear-based biopotential sensing. The system employs a high-resolution 24-bit analog-to-digital converter with 130 dB noise rejection at power line frequencies, achieving a minimum detectable voltage difference of approximately 4 nanovolts between electrodes. This technical capability enables measurement of electroencephalography (EEG), electromyography (EMG), and electrooculography (EOG) signals through electrodes embedded within standard earphone form factors.
 
-A validation study with three participants successfully demonstrated detection of alpha-band brain activity during eyes-closed states, jaw clenching via masseter muscle signals, and smooth pursuit eye movements. These capabilities have direct applications to accessibility: eye-gaze-based interfaces for users with motor impairments, cognitive state monitoring for adaptive systems, and stress detection in real-world environments. Released under the MIT license following Open Source Hardware Association best practices, OpenEarable ExG lowers barriers for researchers and developers working on accessible wearable technologies, directly contributing to our toolkit's mission of promoting inclusive IoT design.
+A technical demonstration with three participants successfully showed signal detection capability: detection of alpha-band brain activity during eyes-closed states, jaw clenching via masseter muscle signals, and smooth pursuit eye movements. Released under the MIT license following Open Source Hardware Association best practices, OpenEarable ExG lowers barriers for researchers and developers working on accessible wearable technologies, directly contributing to our toolkit's mission of promoting inclusive IoT design.
+
+**Development Stage**: This work represents technical validation—demonstrating that ear-based electrodes can detect biopotential signals—not application validation. The accessibility applications listed (eye-gaze interfaces, cognitive monitoring, stress detection) are theoretically possible but would require substantial additional research including: co-design with target disability communities, iterative development, comparative evaluation against existing solutions, and validation studies with users who have motor impairments, cognitive differences, or stress-related conditions.
 
 ### Approach 2: Supporting Designers Through Simulation and Awareness
 
@@ -75,6 +95,8 @@ As populations age, visual impairments become increasingly prevalent, yet design
 **Seeing Our Blind Spots (2022)**: We developed optical see-through smart glasses that enable dynamic, on-the-go visual impairment simulation without the limitations of previous approaches. The system provides approximately 160 degrees horizontal and 140 degrees vertical field of view—much wider than VR headsets and closer to natural human vision. Users can experience both central vision loss and peripheral vision loss at variable severities (moderate to severe), with real-time adjustable parameters.
 
 Our evaluation with 14 participants, including design students, demonstrated that the glasses significantly and effectively reduce visual acuity and visual field without causing typical motion sickness symptoms such as headaches or visual fatigue—a common problem with VR-based simulation. Questionnaire responses and qualitative feedback showed how the glasses helped increase participants' awareness of visual impairment challenges. By enabling designers to experience visual accessibility barriers while engaging in everyday activities (walking through campus, navigating buildings, examining design materials), the tool fosters embodied understanding that informs more inclusive design decisions. This work was published at ACM UIST 2022, a top-tier venue for user interface research.
+
+**Critical Perspectives on Disability Simulation**: Disability studies scholars have raised important concerns about simulation as a pedagogical approach, noting risks of reinforcing deficit perspectives or promoting patronizing attitudes. Our simulation glasses were used within structured educational contexts that emphasized: (1) the distinction between temporary simulation and lived disability experience, (2) environmental and social barriers as primary accessibility challenges (not individual impairments), and (3) co-design with disabled communities as essential to inclusive design. The evaluation measured awareness changes, but measuring whether simulation actually improves design outcomes in practice remains an important direction for future research.
 
 #### Community Outreach and Co-Design
 
@@ -99,6 +121,18 @@ Our research methodology integrates multiple complementary strategies:
 **Somaesthetic Design Principles**: We embrace somaesthetic approaches that value and enhance embodied awareness—how people perceive, interpret, and appreciate their own bodily states and experiences. This philosophical foundation informs our bio-feedback systems and simulation tools.
 
 **Interdisciplinary Collaboration**: Our work spans human-computer interaction, wearable computing, accessibility research, physiological sensing, haptics, and art. This breadth enables holistic solutions that address technical, experiential, and social dimensions of accessibility.
+
+## Research Scope and Limitations
+
+**Sample Limitations**: Studies involved convenience samples (primarily students and volunteers) with sample sizes ranging from n=3 to n=21. Participant demographics, disability status, and representativeness were not systematically reported, limiting generalizability.
+
+**Validation Stages**: Projects represent different validation stages—from technical demonstrations (OpenEarable signal detection) to behavioral interventions (MindSpace relaxation) to educational tools (visual impairment glasses). We distinguish these stages explicitly to avoid overstating claims.
+
+**Focus Areas**: This research concentrated on visual accessibility and stress-related barriers. Findings may not generalize to other disability types (hearing, cognitive, motor) or accessibility challenges without additional research tailored to those contexts.
+
+**Comparative Evaluation**: Most prototypes were evaluated in isolation without systematic comparison to existing accessibility assessment tools or alternative interventions. Establishing comparative effectiveness remains important future work.
+
+**Long-term Adoption**: While prototypes were deployed in authentic contexts, long-term adoption, maintenance, and impact beyond initial studies were not systematically evaluated. Open-source releases enable broader use, but adoption barriers (technical expertise, fabrication resources, ongoing support) may limit practical accessibility.
 
 ## Impact and Outcomes
 

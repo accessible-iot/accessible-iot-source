@@ -4,6 +4,8 @@ title: "Research Outcomes"
 
 This page presents the major prototypes and systems developed through our dual-approach research framework for accessible IoT. Each system addresses specific accessibility challenges through novel technical solutions, community partnerships, or empathy-building tools. Our work demonstrates how physiological sensing, adaptive feedback, and experiential simulation can create more inclusive IoT environments.
 
+**Note on Validation Stages**: The prototypes presented here represent different stages of development and validation—from technical demonstrations to preliminary user studies to validated systems. We explicitly distinguish what has been technically validated, what applications are theoretically possible, and what would require additional research before deployment.
+
 ## Approach 1: Helping Users
 
 ### Affective Umbrella: Physiological Sensing in Everyday Objects
